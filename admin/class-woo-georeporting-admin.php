@@ -73,7 +73,9 @@ class Woo_Georeporting_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-georeporting-admin.css', array(), $this->version, 'all' );
+		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-georeporting-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name,"http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css");
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ).'css/bootstrap.min.css');
 
 	}
 
@@ -96,8 +98,21 @@ class Woo_Georeporting_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-georeporting-admin.js', array( 'jquery' ), $this->version, false );
+		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-georeporting-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name,'http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js');
 
 	}
+	public function add_admin_menu_page(){
+		$this->plugin_screen_hook_suffix = add_menu_page( "woo-georeporting", "Woo Geo-reporting","manage_options","woo-georeporting",array($this,'admin_page'));
+		
+	}
+	function admin_page(){
+		if (is_plugin_active('woocommerce/woocommerce.php')) {
+			include_once 'partials/woo-georeporting-admin-display.php';
+		}else{
+			include_once 'partials/woo-georeporting-404.php';
+		}
+		 
+	 }
 
 }
