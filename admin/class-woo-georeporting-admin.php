@@ -74,8 +74,9 @@ class Woo_Georeporting_Admin {
 		 */
 
 		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-georeporting-admin.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name,"http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css");
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ).'css/bootstrap.min.css');
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ).'css/bootstrap.min.css',array(), $this->version);
+		///wp_enqueue_style( $this->plugin_name,"",array(), $this->version);
+		
 
 	}
 
